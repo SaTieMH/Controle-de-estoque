@@ -1,2 +1,4 @@
-Controle de estoque de componentes dos laboratórios
+Controle de loja
 -------------------------------------------------------
+
+Controle de produtos e pedidos de uma loja

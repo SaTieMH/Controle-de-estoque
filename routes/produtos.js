@@ -9,26 +9,31 @@ router.get('/', function(req, res, next){
     });
 });
 
-//INSERE UM PRODUTO
-router.post('/', function(req, res, next){
-    res.status(201).send({
-        mensagem: "Usando o POST dentro da sua rota de produtos"
-    });
-});
-
 //RETORNA O DADO DE UM PRODUTO
-router.get('/:id_produto', function(req, res, next){
+router.get('/:id_produto', function (req, res, next) {
     const id = req.params.id_produto;
-    if(id === 'especial') {
-        res.status(200).send ({
+    if (id === 'especial') {
+        res.status(200).send({
             mensagem: 'Você descobriu o ID especial',
             id: id
         });
     } else {
-        res.status(200).send ({
+        res.status(200).send({
             mensagem: 'Você passou o ID ' + id
         });
     }
+});
+
+//INSERE UM PRODUTO
+router.post('/', function(req, res, next){
+    const produto = {
+        nome: req.body.nome,
+        preco: req.body.preco
+    }
+    res.status(201).send({
+        mensagem: "Usando o POST dentro da sua rota de produtos",
+        produtoInserido: produto
+    });
 });
 
 //ALTERA UM PRODUTO
