@@ -1,0 +1,9 @@
+{
+    "env": {
+        "PG_USER": "postgres",
+        "PG_PASSWORD": "postgre123",
+        "PG_DATABASE": "postgres",
+        "PG_HOST": "localhost",
+        "PG_PORT": 5432
+    }
+}

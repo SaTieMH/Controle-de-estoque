@@ -1,6 +1,7 @@
 //const { Router } = require('express');
 const express = require('express');
 const router = express.Router();
+const pg = require("../pg").pool;
 
 //RETORNA TODOS OS PRODUTOS
 router.get('/', function(req, res, next){
@@ -30,6 +31,12 @@ router.post('/', function(req, res, next){
         nome: req.body.nome,
         preco: req.body.preco
     }
+    /*pg.connect( funtion(error, conn) {
+        conn.query(
+            'insert into produtos values (?,?);',
+            [req.body.nome, req.body.preco]
+        )
+    });*/
     res.status(201).send({
         mensagem: "Usando o POST dentro da sua rota de produtos",
         produtoInserido: produto
