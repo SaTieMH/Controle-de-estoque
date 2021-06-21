@@ -11,6 +11,22 @@ app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({ extended: false })); //apenas dados simples
 app.use(bodyParser.json()); //aceita apenas json de entrada no body
 
+app.use(function(req, res, next) {
+    res.header('Access-Control-Allow-Origin', '*');//permissão para todos os servidores
+    res.header( //o que vou aceitar de cabeçalho (aba no postman)
+        'Access-Control-Allow-Header',
+        'origin, X-Requested-With, Content-Type, Accept, Authorization'
+    );
+    //quando o client chama a api é comum ele executar uma chamada options, que servem para o servidor da api responder quais são os tipos de opções que são aceitas
+
+    //options muito comum ser executado quando executar frontend (consumindo api)
+    if (req.method === 'OPTIONS') {
+        res.header('Access-Control-Allow-Methods', 'PUT, POST, PATCH, DELETE, GET');
+        return res.status(200).send({});
+    }
+    next();
+});
+
 app.use('/produtos', rotaProdutos);
 app.use('/pedidos', rotaPedidos);
 
